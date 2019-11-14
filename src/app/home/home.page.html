@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>home</ion-title>
+       <ion-title class="ion-text-center" >WeQuit</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,11 +8,28 @@
 
   <firebase-ui></firebase-ui>
 
-  <h1 *ngIf="afAuth.auth.currentUser">
-    Welcome {{afAuth.auth.currentUser.displayName}}!
-  </h1>
+  <div class="ion-text-center">
+    <h1 *ngIf="afAuth.auth.currentUser">
+      Welcome {{afAuth.auth.currentUser.displayName}}!
+    </h1>
+  
+  <p>
+    Thank you for signing up to WeQuit. This app is to aid you in your persute of a healthier lifestyle, 
+    by quitting smoking and/or vaping.
+  </p>
+  <p>
+    This app is not limited to but our main focus is helping you quit smoking and vaping, however some of our
+     features could be found useful to cut down on any number of vices you may be trying to kick.
+  </p>
+  </div>
+      <!-- <link type="image/png" href="../assets/icon/WeQuit.png"></link> -->
+  <!-- <img src="../assets/icon/WeQuit.png"></img> -->
+  
 
-  <ion-button *ngIf="afAuth.auth.currentUser" (click)="signOut()" >
+</ion-content>
+
+<ion-footer>
+  <ion-button expand="full" *ngIf="afAuth.auth.currentUser" (click)="signOut()" >
     Sign Out
   </ion-button>
-</ion-content>
+</ion-footer>
