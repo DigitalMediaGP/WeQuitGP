@@ -4,6 +4,7 @@ import { Journal, JournalService } from 'src/app/services/journal.service';
 import { ToastController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 
+
 @Component({
   selector: 'app-journal-details',
   templateUrl: './journal-details.page.html',

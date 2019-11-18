@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
        <ion-title>WeQuit</ion-title>
-       <ion-buttons slot="start">
+       <ion-buttons slot="start" *ngIf="afAuth.auth.currentUser">
           <ion-menu-button></ion-menu-button>
        </ion-buttons>
   </ion-toolbar>
@@ -18,14 +18,16 @@
       Welcome {{afAuth.auth.currentUser.displayName}}!
     </h1>
   
-  <p>
+   
+    <p *ngIf="afAuth.auth.currentUser">
     Thank you for signing up to WeQuit. This app is to aid you in your persute of a healthier lifestyle, 
     by quitting smoking and/or vaping.
   </p>
-  <p>
+  <p *ngIf="afAuth.auth.currentUser">
     This app is not limited to but our main focus is helping you quit smoking and vaping, however some of our
      features could be found useful to cut down on any number of vices you may be trying to kick.
   </p>
+  
   </div>
 
   

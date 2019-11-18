@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
 import { map, take } from 'rxjs/operators';
 import {Observable } from 'rxjs';
+import { Journal } from 'src/app/model.Journal';
 
 export interface Journal {
   id?: string,
