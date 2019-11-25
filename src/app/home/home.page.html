@@ -7,11 +7,17 @@
   </ion-toolbar>
 </ion-header>
 
+
+
+
 <ion-content>
 
  
 
   <firebase-ui></firebase-ui>
+
+  <ion-img src="assets/img/animatedlogo.gif" width="20" height="20"  *ngIf="afAuth.auth.currentUser"></ion-img>
+
 
   <div class="ion-text-center">
     <h1 *ngIf="afAuth.auth.currentUser">

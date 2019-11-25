@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Journal, JournalService } from 'src/app/services/journal.service';
+import { JournalService } from '../Services/journal.service';
 import { ToastController } from '@ionic/angular';
+import { Journal } from '../model.Journal';
 import { Observable } from 'rxjs';
+import { NavController } from '@ionic/angular';
+
+
 
 
 @Component({
@@ -12,31 +16,30 @@ import { Observable } from 'rxjs';
 })
 export class JournalDetailsPage implements OnInit {
 
-  private journals: Observable<Journal[]>;
+private journals: Observable<Journal[]>;
 
-  journal: Journal = {
-    id: '',
-    name: '',
+ journal: Journal = {
+    id:'',
+    name:'',
     notes: ''
-  };
+ };
 
-  constructor(private activatedRoute: ActivatedRoute, 
+  constructor(
+    public navCtrl: NavController,
+    private activatedRoute: ActivatedRoute,
     private journalService: JournalService,
-    private toastCtrl: ToastController, 
-    private router: Router) { }
+    private toastCtrl: ToastController,
+    private router: Router) {}
 
   ngOnInit() {
-    let id = this.activatedRoute.snapshot.paramMap.get('id');
-    if (id) {
-      this.journalService.getJournal(id).subscribe(idea => {
-        this.journal = idea;
-      });
-    }
+    this.journals = this.journalService.getJournals();
+
   }
 
   addJournal() {
     this.journalService.addJournal(this.journal).then(() => {
       this.router.navigateByUrl('/');
+      console.log("Entry added");
       this.showToast('Entry Added');
     }, err=> {
       this.showToast('There was a problem adding your entry :(');
@@ -52,7 +55,7 @@ export class JournalDetailsPage implements OnInit {
     });
   }
 
-  updateIdea() {
+  updateJournal() {
     this.journalService.updateJournal(this.journal).then(() => {
       this.showToast('Entry Updated');
     }, err => {

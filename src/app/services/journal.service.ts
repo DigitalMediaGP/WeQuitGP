@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
+
 import { map, take } from 'rxjs/operators';
 import {Observable } from 'rxjs';
-import { Journal } from 'src/app/model.Journal';
+import { Journal } from '../model.Journal';
 
-export interface Journal {
-  id?: string,
-  name: string,
-  notes: string
-}
+import 'firebase/auth';
+import 'firebase/firestore';
+import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from 
+'@angular/fire/firestore';
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class JournalService {
   private journalCollection: AngularFirestoreCollection<Journal>;
 
   constructor(private afs: AngularFirestore) {
-    this.journalCollection = this.afs.collection<Journal>('Journals');
+    this.journalCollection = this.afs.collection<Journal>('journals');
     this.journals = this.journalCollection.snapshotChanges().pipe(
       map(actions =>{
         return actions.map(a =>{

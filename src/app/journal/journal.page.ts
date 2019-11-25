@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Observable } from 'rxjs';
-import { Journal, JournalService } from 'src/app/services/journal.service';
+import { JournalService } from 'src/app/services/journal.service';
+import { ActivatedRoute } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-journal',
@@ -9,18 +11,27 @@ import { Journal, JournalService } from 'src/app/services/journal.service';
   styleUrls: ['./journal.page.scss'],
 })
 export class JournalPage implements OnInit {
+  journal: import("c:/Users/rober/Documents/GitHub/WeQuitGP/src/app/model.Journal").Journal;
 
-  private journals: Observable<Journal[]>;
 
-  constructor(private journalService: JournalService, public afAuth: AngularFireAuth,) {}
-  signOut() {
-    this.afAuth.auth.signOut().then(() => {
-      location.reload();
-    });
-  }
+ 
+
+  constructor(private journalService: JournalService,
+              private activatedRoute: ActivatedRoute,
+               public afAuth: AngularFireAuth ) {}
+ 
 
   ngOnInit() {
-    this.journals = this.journalService.getJournals();
+    
+    let id = this.activatedRoute.snapshot.paramMap.get('id');
+     if (id) {
+       this.journalService.getJournal(id).subscribe(journal => {
+         this.journal = journal;
+       })
+     }
   }
+
+ 
+
 
 }
