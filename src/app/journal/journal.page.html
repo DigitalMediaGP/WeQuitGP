@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="success">
+  <ion-toolbar color="primary">
     <ion-title *ngIf="afAuth.auth.currentUser"> {{afAuth.auth.currentUser.displayName}}'s Journal</ion-title>
     <ion-buttons slot="start">
        <ion-menu-button></ion-menu-button>
@@ -9,15 +9,16 @@
 
 <ion-content>
 
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/journal:id">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
       <ion-list>
-        <ion-item button *ngFor="let journal of (journals | async)" [routerLink]="['/journal:id']">
+        <ion-item button [routerLink]="['/journal:id']" *ngFor="let journal of (journals | async)">
           {{ journal.name }}
         </ion-item>
       </ion-list>
   
-      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button routerLink="/journal:id">
-          <ion-icon name="add"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
 </ion-content>
