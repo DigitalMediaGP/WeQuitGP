@@ -31,7 +31,6 @@ export class JournalService {
    }
 
    getJournals(): Observable<Journal[]> {
-   console.log(this.journals);
     return this.journals;
    }
 

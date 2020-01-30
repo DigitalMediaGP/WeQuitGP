@@ -14,6 +14,7 @@ import { FirebaseUIModule, firebase, firebaseui } from 'firebaseui-angular';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
@@ -45,7 +46,8 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: FirestoreSettingsToken, useValue: {} }
+    { provide: FirestoreSettingsToken, useValue: {} },
+    InAppBrowser
   ],
   bootstrap: [AppComponent]
 })

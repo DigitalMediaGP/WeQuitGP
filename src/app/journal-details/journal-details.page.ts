@@ -32,22 +32,9 @@ private journals: Observable<Journal[]>;
     private router: Router) {}
 
   ngOnInit() {
-    let id = this.activatedRoute.snapshot.paramMap.get('id');
-      if (id) {
-         this.journalService.getJournal(id).subscribe(journal => {
-           this.journal = journal;
-         });
-       }
-   }
+    this.journals = this.journalService.getJournals();
 
-  // ionViewWillEnter() {
-  //   let id = this.activatedRoute.snapshot.paramMap.get('id');
-  //   if (id) {
-  //     this.journalService.getJournal(id).subscribe(journal => {
-  //       this.journal = journal;
-  //     });
-  //   }
-  // }
+  }
 
   addJournal() {
     this.journalService.addJournal(this.journal).then(() => {
