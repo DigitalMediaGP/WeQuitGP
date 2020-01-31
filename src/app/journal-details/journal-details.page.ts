@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { JournalService } from '../Services/journal.service';
+import { JournalService, Journal } from '../Services/journal.service';
 import { ToastController } from '@ionic/angular';
-import { Journal } from '../model.Journal';
+// import { Journal } from '../model.Journal';
 import { Observable } from 'rxjs';
 import { NavController } from '@ionic/angular';
 
@@ -16,29 +16,42 @@ import { NavController } from '@ionic/angular';
 })
 export class JournalDetailsPage implements OnInit {
 
-private journals: Observable<Journal[]>;
+//private journals: Observable<Journal[]>;
 
  journal: Journal = {
-    id:'',
-    name:'',
-    notes: ''
+  name: '',
+  notes: ''
  };
 
-  constructor(
-    public navCtrl: NavController,
-    private activatedRoute: ActivatedRoute,
-    private journalService: JournalService,
-    private toastCtrl: ToastController,
-    private router: Router) {}
+ id = null;
+
+  constructor(private activatedRoute: ActivatedRoute, private journalService: JournalService,private toastCtrl: ToastController,private router: Router) {}
+    //public navCtrl: NavController,
+    
+    
+    
+    
+
+
 
   ngOnInit() {
-    this.journals = this.journalService.getJournals();
+    // this.journals = this.journalService.getJournals();
 
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
+
+  }
+
+  ionViewWillEnter(){
+    if (this.id) {
+      this.journalService.getJournal(this.id).subscribe(journal => {
+        this.journal = journal;
+      });
+    }
   }
 
   addJournal() {
     this.journalService.addJournal(this.journal).then(() => {
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/journalEntryList');
       console.log("Entry added");
       this.showToast('Entry Added');
     }, err=> {
@@ -48,7 +61,7 @@ private journals: Observable<Journal[]>;
 
   deleteJournal() {
     this.journalService.deleteJournal(this.journal.id).then(() => {
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/journalEntryList');
       this.showToast('Idea deleted');
     }, err => {
       this.showToast('There has been a problem deleting your entry');
