@@ -14,7 +14,8 @@ const routes: Routes = [
   //{ path: 'journal1/:id', loadChildren: './journal/journal.module#JournalPageModule' },
  
 //{ path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule' },
-  { path: 'facts', loadChildren: './facts/facts.module#FactsPageModule' }
+  { path: 'facts', loadChildren: './facts/facts.module#FactsPageModule' },
+  { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' }
 
 ];
 @NgModule({

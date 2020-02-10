@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
        <ion-title>WeQuit</ion-title>
        <ion-buttons slot="start" *ngIf="afAuth.auth.currentUser">
           <ion-menu-button></ion-menu-button>
@@ -41,7 +41,7 @@
 </ion-content>
 
 <ion-footer>
-  <ion-button expand="full" *ngIf="afAuth.auth.currentUser" (click)="signOut()" >
+  <ion-button color="danger" expand="full" *ngIf="afAuth.auth.currentUser" (click)="signOut()" >
     Sign Out
   </ion-button>
 </ion-footer>

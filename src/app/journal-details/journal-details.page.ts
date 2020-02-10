@@ -62,7 +62,7 @@ export class JournalDetailsPage implements OnInit {
   deleteJournal() {
     this.journalService.deleteJournal(this.journal.id).then(() => {
       this.router.navigateByUrl('/journalEntryList');
-      this.showToast('Idea deleted');
+      this.showToast('Entry deleted');
     }, err => {
       this.showToast('There has been a problem deleting your entry');
     });
@@ -79,7 +79,7 @@ export class JournalDetailsPage implements OnInit {
   showToast(msg) {
     this.toastCtrl.create({
       message: msg,
-      duration: 2000
+      duration: 1500
     }).then(toast => toast.present());
   }
 
